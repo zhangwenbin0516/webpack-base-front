@@ -1,0 +1,29 @@
+{
+  "name": "webpack-base-front",
+  "version": "1.0.0",
+  "description": "webpack配置",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangwenbin0516/webpack-base-front.git"
+  },
+  "keywords": [
+    "webpack",
+    "vue",
+    "javascript",
+    "js",
+    "前端"
+  ],
+  "author": "zhangwenbin <942623159@qq.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangwenbin0516/webpack-base-front/issues"
+  },
+  "homepage": "https://github.com/zhangwenbin0516/webpack-base-front#readme",
+  "devDependencies": {
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
