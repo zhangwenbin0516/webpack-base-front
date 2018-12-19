@@ -1,6 +1,8 @@
 "use strict";
+import 'assets/sass/reset.scss'
+import logo from 'assets/images/logo.png'
 (function() {
   var ele = document.createElement('div');
-  ele.innerText = '这就是个测试';
+  ele.innerHTML = 'wqeqweqweqwesad';
   document.body.appendChild(ele);
 })();
