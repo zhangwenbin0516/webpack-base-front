@@ -1,0 +1,34 @@
+{
+  "name": "webpack-base-front",
+  "version": "1.0.0",
+  "description": "webpack react requirejs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode production build/webpack.base.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangwenbin0516/webpack-base-front.git"
+  },
+  "keywords": [
+    "webpack",
+    "react",
+    "requirejs"
+  ],
+  "author": "zhangwenbin <942623159@qq.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangwenbin0516/webpack-base-front/issues"
+  },
+  "homepage": "https://github.com/zhangwenbin0516/webpack-base-front#readme",
+  "dependencies": {
+    "react": "^16.8.5"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1"
+  }
+}
