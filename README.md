@@ -13,3 +13,5 @@
         build  webpack配置
         dist   打包输出
         src    项目主目录
+        
+* [webpack指导文档](https://segmentfault.com/a/1190000014247030)
