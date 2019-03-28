@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "webpack react requirejs",
   "scripts": {
-    "dev": "webpack --inline --progress --config build/webpack.config.js",
+    "dev": "webpack --progress --config build/webpack.config.js",
     "build": "webpack --mode production"
   },
   "keywords": [

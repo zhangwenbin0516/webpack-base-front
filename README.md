@@ -14,4 +14,14 @@
         dist   打包输出
         src    项目主目录
         
-* [webpack指导文档](https://segmentfault.com/a/1190000014247030)
+* webpack参数说明
+
+        --config 执行另一份配置文件
+        --watch 监听文件并执行打包
+        -p 混淆脚本
+        -d 生产map映射文件
+        --progress 显示进度条
+        --color 添加颜色
+        --open 启动打开浏览器
+        
+* [webpack指导文档](https://www.webpackjs.com)
