@@ -1,40 +1,40 @@
 "use strict";
 
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+let resolve = (resolve) => {
+    return path.join(__dirname, '..', resolve)
+}
 
 module.exports = {
-    mode: 'development',
-    entry: ["babel-polyfill", path.join(__dirname, '..', 'src/app.js')],
-    output: {
-        filename: "[name].js",
-        path: path.resolve(__dirname, '..', 'dist')
+    entry: {
+        app: resolve('src/app.js')
     },
+    output: {
+        filename: "[name].[Hash].js",
+        path: resolve('dist')
+    },
+    target: 'node',
     module: {
         rules: [
             {
                 test: /\.js$/,
-                use: ['babel-loader'],
-                include: path.join(__dirname, '..', 'src'),
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
             },
             {
                 test: /\.css$/,
-                include: path.join(__dirname, '..', 'src'),
-                use: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.scss$/
-                include: path.join(__dirname, '..', 'src'),
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                //include: resolve('src'),
+                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader']
             }
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            filename: "index.html",
-            template: path.join(__dirname, '..', 'index.html')
+        new MiniCssExtractPlugin({
+            fallback: 'style-loader'
         })
     ]
 }
