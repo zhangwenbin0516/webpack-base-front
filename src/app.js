@@ -10,4 +10,4 @@ ele.classList.add('hello');
 //let img = new Image();
 //img.src = logo;
 //ele.append(img)
-console.log('ssss')
+console.log('sssxxxs')

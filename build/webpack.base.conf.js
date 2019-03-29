@@ -1,21 +1,11 @@
 "use strict";
 
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Webpack = require('webpack');
-
 
 module.exports = {
-    mode: 'development',
-    devtool: "eval-source-map",
     entry: {
         app: path.join(__dirname, '..', 'src/app.js'),
-        //home: __dirname + '../src/home.js'
-    },
-    output: {
-        path: path.join(__dirname, '..','dist'),
-        filename: "/public/js/[name].[chunkhash].js"
     },
     module: {
         rules: [
@@ -45,13 +35,11 @@ module.exports = {
         ]
     },
     plugins: [
-        new Webpack.ProgressPlugin(),
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'wwwww',
-            template: path.join(__dirname, '..','index.html'),
+            template: path.join(__dirname, '..', 'index.html'),
+            title: 'webpack学习教程',
             filename: "index.html",
-            publicPath: '/assets/'
+            publicPath: 'assets/'
         })
     ],
 }
