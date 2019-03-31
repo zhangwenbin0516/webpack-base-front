@@ -6,6 +6,7 @@ const WebpackBaseConf = require('./webpack.base.conf');
 const CleanPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = WebpackMerge(WebpackBaseConf, {
     mode: 'production',
@@ -13,6 +14,15 @@ module.exports = WebpackMerge(WebpackBaseConf, {
         path: path.join(__dirname, '..', 'dist'),
         filename: "public/js/[name].[Hash:5].js",
         publicPath: '/'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                include: path.join(__dirname, '..', 'src'),
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
+            }
+        ]
     },
     plugins: [
         new CleanPlugin({
@@ -28,5 +38,6 @@ module.exports = WebpackMerge(WebpackBaseConf, {
             filename: 'public/css/[name].[Hash:6].css',
             chunkFilename: '[id].css'
         }),
+        new OptimizeCssAssetsPlugin()
     ]
 });

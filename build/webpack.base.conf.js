@@ -9,19 +9,34 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(sa|sc|c)ss$/,
+                test: /\.(sa|sc)ss$/,
                 include: path.resolve(__dirname, '../src'),
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 include: path.resolve(__dirname, '../src'),
-                use: ['file-loader']
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[Hash:6].[ext]',
+                            outputPath: 'public/images/'
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                include: path.resolve(__dirname, '../src'),
-                use: ['file-loader']
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'public/font/[name].[Hash:6].[ext]',
+                            outputPath: 'public/font/'
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(csv|tsv)$/,
