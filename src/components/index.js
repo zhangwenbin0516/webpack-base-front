@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default React.createClass({
-    render: function() {
-        return <h1>asdasdas</h1>
+class Pages extends React.Component{
+    render() {
+        return(
+            <div className={'ssssss'}>wqeqwe</div>
+        )
     }
-})
+}
+
+export default Pages

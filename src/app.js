@@ -1,9 +1,18 @@
 import 'babel-polyfill'
+
+import React from 'react'
 import ReactDom from 'react-dom'
-import pages from 'page/'
+import Pages from 'page/'
 import 'assets/sass/pages.scss'
 
-ReactDom.render(
-    <pages />,
-    document.getElementById('root')
-)
+class App extends React.Component {
+    render() {
+        return(
+            <div className={'ceshi'}>Hello, World!
+                <Pages />
+            </div>
+        )
+    }
+}
+
+ReactDom.render(<App />, document.getElementById('root'))
