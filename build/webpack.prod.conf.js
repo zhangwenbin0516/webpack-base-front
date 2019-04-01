@@ -3,40 +3,59 @@
 const path = require('path');
 const WebpackMerge = require('webpack-merge');
 const WebpackBaseConf = require('./webpack.base.conf');
-const CleanPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const config = require('../config');
+const CleanPlugin = require('clean-webpack-plugin');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = WebpackMerge(WebpackBaseConf, {
     mode: 'production',
     output: {
-        path: path.join(__dirname, '..', 'dist'),
-        filename: "public/js/[name].[Hash:5].js",
-        publicPath: '/'
+        path: path.join(__dirname, '..', config.build.assetsBuild),
+        filename: config.build.assetsPath + "js/[name].[hash:5].js",
+        publicPath: config.build.publicPath
     },
     module: {
         rules: [
             {
-                test: /\.css$/,
-                include: path.join(__dirname, '..', 'src'),
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
+                test: /\.(sa|sc|c)ss$/,
+                include: /src/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'sass-loader'
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('autoprefixer')
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     },
     plugins: [
         new CleanPlugin({
-            root: path.join(__dirname, '..', 'dist')
+            root: path.join(__dirname, '..', config.build.assetsBuild)
         }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '..', 'index.html'),
-            title: 'webpack学习教程',
             filename: "index.html",
-            publicPath: 'assets/'
+            publicPath: config.build.publicPath
         }),
         new MiniCssExtractPlugin({
-            filename: 'public/css/[name].[Hash:6].css',
-            chunkFilename: '[id].css'
+            filename: config.build.assetsPath + 'css/[name].[hash:6].css',
+            chunkFilename: '[id].[hash].css'
         }),
         new OptimizeCssAssetsPlugin()
     ]
