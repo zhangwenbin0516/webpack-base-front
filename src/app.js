@@ -1,7 +1,9 @@
 import 'babel-polyfill'
-import React, {Component} from 'react'
 import ReactDom from 'react-dom'
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-
+import pages from 'page/'
 import 'assets/sass/pages.scss'
 
+ReactDom.render(
+    <pages />,
+    document.getElementById('root')
+)
