@@ -28,7 +28,51 @@ module.exports = WebpackMerge(WebpackBaseConf, {
             {
                 test: /\.(sass|scss|css)$/,
                 include: /src/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'sass-loader'
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('autoprefixer')
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                include: /src/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            limit: 8192,
+                            outputPath: config.dev.assetsPath + 'images/'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'font/[name].[ext]',
+                            outputPath: config.dev.assetsPath + 'font/'
+                        }
+                    }
+                ]
             }
         ]
     },

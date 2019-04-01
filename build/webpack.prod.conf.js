@@ -14,7 +14,7 @@ module.exports = WebpackMerge(WebpackBaseConf, {
     mode: 'production',
     output: {
         path: path.join(__dirname, '..', config.build.assetsBuild),
-        filename: config.build.assetsPath + "js/[name].[hash:5].js",
+        filename: config.build.assetsPath + "js/[name].[Hash:5].js",
         publicPath: config.build.publicPath
     },
     module: {
@@ -41,6 +41,32 @@ module.exports = WebpackMerge(WebpackBaseConf, {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                include: /src/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name].[Hash:6].[ext]',
+                            limit: 8192,
+                            outputPath: config.build.assetsPath + 'images/'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'font/[name].[Hash:6].[ext]',
+                            outputPath: config.build.assetsPath + 'font/'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -54,7 +80,7 @@ module.exports = WebpackMerge(WebpackBaseConf, {
             publicPath: config.build.publicPath
         }),
         new MiniCssExtractPlugin({
-            filename: config.build.assetsPath + 'css/[name].[hash:6].css',
+            filename: config.build.assetsPath + 'css/[name].[Hash:6].css',
             chunkFilename: '[id].[hash].css'
         }),
         new OptimizeCssAssetsPlugin()

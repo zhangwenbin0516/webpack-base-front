@@ -21,7 +21,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 include: /src/,
                 use: {
                     loader: 'babel-loader',
@@ -32,34 +32,8 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                include: /src/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            name: '[name].[Hash:6].[ext]',
-                            limit: 8192,
-                            outputPath: config.dev.assetsPath + 'images/'
-                        }
-                    }
-                ]
-            },
-            {
                 test: /\.(htm|html)$/,
                 use: ['html-withimg-loader']
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: 'font/[name].[Hash:6].[ext]',
-                            outputPath: config.dev.assetsPath + 'font/'
-                        }
-                    }
-                ]
             },
             {
                 test: /\.(csv|tsv)$/,
